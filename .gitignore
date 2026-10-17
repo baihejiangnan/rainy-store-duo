@@ -1,0 +1,6 @@
+**/node_modules/
+**/.env
+**/.env.*
+**/.openai/
+**/.sites-runtime/
+**/.sites-checkout*/

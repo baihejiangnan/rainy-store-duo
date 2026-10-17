@@ -1,0 +1,2 @@
+# Preserve archived project files byte for byte, including original line endings.
+projects/** -text

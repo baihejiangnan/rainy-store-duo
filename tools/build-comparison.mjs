@@ -1,8 +1,8 @@
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 const md=await readFile(new URL('../comparison.md',import.meta.url),'utf8');
 const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-const inline=s=>escape(s).replace(/\[([^\]]+)\]\((https:\/\/[^)]+)\)/g,'<a href="$2">$1</a>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
-const ids={'测试环境':'environment','成品感受':'observations','耗时与费用':'time-cost','完整提示词':'prompt'};
+const inline=s=>escape(s).replace(/\[([^\]]+)\]\((https:\/\/[^)]+)\)/g,'<a href="$2">$1</a>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>');
+const ids={'测试环境':'environment','产出形式与复现':'deliverables','成品感受':'observations','耗时与费用':'time-cost','完整提示词':'prompt'};
 let prompt=false;
 const body=md.trim().split(/\r?\n\s*\r?\n/).map(block=>{
   if(block.startsWith('# '))return `<h1>${inline(block.slice(2))}</h1><p class="meta">个人体验记录 · 单次测试 · 2026.10.18</p>`;

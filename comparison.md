@@ -18,7 +18,21 @@
 | 模型 | DeepSeek-V4.1-Flash 1017 | GPT-6.1 Sol |
 | 推理档位 | High | High |
 
-Agent 预设使用标准模式。按本次测试记录，没有第三方插件参与任务，Codex 只开启了官方推荐的实验性功能和插件。DSH 的完成截图显示使用了 4 个子智能体，Codex 这次由主模型直接执行。两边的代理编排和工具环境有差异，所以这里比较的是各自实际跑出的结果。
+DSH 的 Agent 预设使用标准模式。按本次测试记录，DSH 没有第三方插件参与任务，只开启了官方推荐的实验性功能和插件。DSH 的完成截图显示使用了 4 个子智能体，Codex 这次由主模型直接执行。两边的代理编排和工具环境有差异，所以这里比较的是各自实际跑出的结果。
+
+## 产出形式与复现
+
+两边收到的都只有文末这份原始提示词，没有额外要求仅制作单个 HTML 文件，也没有指定工程目录或交付格式。交付方式由各自的模型与代理自行决定。
+
+DSH 生成了一个完整的项目文件夹，包含模块化场景源码、构建脚本、依赖锁文件、预览图、团队工作说明，以及可以直接打开的单文件 HTML 成品。
+
+检查本地文件后，Codex 实际也生成了一个可重新构建的 Three.js 工程，包含场景源码、HTML 模板、构建脚本、依赖锁文件和本地预览服务。最初向用户交付的是自包含离线 HTML 与场景预览图。
+
+两份工程已分别归档到比较仓库的 `projects/dsh/` 和 `projects/codex/`。本地依赖缓存、Git 元数据、发布平台配置和废弃中间构建没有入库。原始场景源码与成品未作修改。
+
+[查看 DSH 完整项目](https://github.com/baihejiangnan/rainy-store-duo/tree/main/projects/dsh/) · [查看 Codex 完整项目](https://github.com/baihejiangnan/rainy-store-duo/tree/main/projects/codex/) · [下载整个仓库 ZIP](https://github.com/baihejiangnan/rainy-store-duo/archive/refs/heads/main.zip)
+
+归档时使用 Node.js v24.19.0，在独立目录分别执行 `npm ci`，再运行各自的构建命令。DSH 使用 `node build.mjs --minify`，Codex 使用 `npm run build`。两份重新构建的 HTML 均与对应原始成品的 SHA-256 一致。具体步骤见各项目内的复现说明。
 
 ## 成品感受
 
