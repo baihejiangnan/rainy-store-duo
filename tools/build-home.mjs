@@ -6,7 +6,8 @@ if(!prompt)throw new Error('Missing original prompt');
 const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 await writeFile(new URL('prompt.txt',root),prompt+'\n');
 const block=`<!-- PROMPT:START -->
-<details class="full-prompt" id="full-prompt"><summary><strong>完整提示词</strong><span class="closed-label">展开查看与复现 ＋</span><span class="open-label">收起 －</span></summary><p class="prompt-context">双方收到的原始提示词如下。没有额外要求仅制作单个 HTML 文件，也没有指定工程目录或交付格式。</p><pre>${escape(prompt)}</pre><p class="prompt-download"><a href="./prompt.txt" download>下载完整提示词.txt ↓</a></p></details>
+<section class="prompt-panel" aria-label="完整提示词与复制"><button type="button" class="copy-prompt copy-top" data-copy-prompt>复制提示词</button><details class="full-prompt" id="full-prompt"><summary><strong>完整提示词</strong><span class="closed-label">展开查看与复现 ＋</span><span class="open-label">收起 －</span></summary><p class="prompt-context">双方收到的原始提示词如下。没有额外要求仅制作单个 HTML 文件，也没有指定工程目录或交付格式。</p><pre>${escape(prompt)}</pre><div class="prompt-download"><button type="button" class="copy-prompt" data-copy-prompt>复制完整提示词</button><a href="./prompt.txt" download>下载完整提示词.txt ↓</a></div></details><p id="copy-status" class="copy-status sr-only" role="status" aria-live="polite"></p></section>
+<script src="./assets/copy-prompt.js" defer></script>
 <!-- PROMPT:END -->`;
 const indexPath=new URL('index.html',root);
 const html=await readFile(indexPath,'utf8');
