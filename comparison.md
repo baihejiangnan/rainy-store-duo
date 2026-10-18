@@ -9,9 +9,9 @@
 
 ## 测试环境
 
-首轮对照中，两边使用的都是各自的官方客户端，以及测试时各自的最新版 harness。首轮 DSH 的内核 / harness 版本为 DSH 0.2.1-rc2，具体配置如下。第二次测试的具体模型版本与档位没有单独补充，不直接沿用首轮配置。
+首轮对照中，两边使用的都是各自的官方客户端，以及测试时各自的最新版 harness。经补充确认，DSH 两次测试的客户端与内核版本、模型和推理档位完全相同，均为官方 DSH 客户端、DSH 0.2.1-rc2、DeepSeek-V4.1-Flash 1017 和 High 档位。第二次只另开了独立工作区，未更换这些配置。
 
-| 项目 | DSH | Codex |
+| 项目 | DSH（两次相同） | Codex |
 | --- | --- | --- |
 | 桌面客户端 | 官方 DSH 客户端 | 官方 Codex 桌面端 |
 | 内核 / harness 版本 | DSH 0.2.1-rc2 | 测试时最新版 |
@@ -53,6 +53,8 @@ DSH 生成了一个完整的项目文件夹，包含模块化场景源码、构�
 ## DSH 第二次独立测试
 
 我对 DSH 的实际结果仍不满意，与我看到的网上评价有落差，于是新开了一个工作区，重新做了一次独立测试，没有干扰原有项目。这次耗时约 1 小时 30 分钟。第二次成品单独展示，保留第一次结果，方便一起查看。
+
+第二次使用的客户端、内核版本、模型和 High 档位均与第一次相同，即官方 DSH 客户端、DSH 0.2.1-rc2、DeepSeek-V4.1-Flash 1017、High。
 
 [打开 DSH 第二次测试](https://baihejiangnan.github.io/rainy-store-duo/dsh-2/) · [查看第二次完整项目](https://github.com/baihejiangnan/rainy-store-duo/tree/main/projects/dsh-2/)
 
