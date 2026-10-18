@@ -1,6 +1,6 @@
-# 两份原始产出归档
+# 原始产出归档，含 DSH 第二次独立测试
 
-归档日期为 2026-10-18。两个目录来自各自原任务的最终可构建工程，未修改场景源码或 HTML 成品。
+归档日期为 2026-10-18。目录来自各自原任务的最终可构建工程，未修改场景源码或 HTML 成品。`dsh/`、`codex/` 保留首轮对照，新增 `dsh-2/` 存放 DSH 独立复测，互不替换。
 
 ## DSH
 
@@ -16,12 +16,15 @@ Codex 最初在工作目录内生成完整 Three.js 工程，最终交付自包�
 
 ## 构建验证
 
-验证环境为 Node.js v24.19.0。将两份归档分别复制到独立临时目录，执行 `npm ci` 后构建，结果如下。
+DSH 第二次归档在 `dsh-2/`，包含原始模块化源码、构建脚本、依赖锁文件、场景规范、原始成品和四张最终或检查截图。第二次独立构建命令为 `node build.mjs --single`，输出单文件 HTML 的 SHA-256 与原成品一致：`64a42dd323f8e0a1c48c9c63e5902cd655494828ab1c1fe7c23608f9eb398342`。其余调试中间截图未收录。
+
+验证环境为 Node.js v24.19.0。将三个归档分别复制到独立临时目录，执行 `npm ci` 后构建，结果如下。
 
 | 项目 | 构建命令 | 与原成品对比 |
 | --- | --- | --- |
 | DSH | `node build.mjs --minify` | HTML SHA-256 完全一致 |
 | Codex | `npm run build` | HTML SHA-256 完全一致 |
+| DSH 第二次 | `node build.mjs --single` | HTML SHA-256 完全一致 |
 
 原成品及独立重新构建的成品，对应 SHA-256 均为以下值。
 
@@ -31,6 +34,9 @@ DSH 雨夜便利店.html
 
 Codex public/index.html
 704cdeafb0ab1fe3b1a91f6e3a939f44e98eb87ffc8857c87152ab56dfb47e56
+
+DSH 第二次 雨夜のコンビニ.html
+64a42dd323f8e0a1c48c9c63e5902cd655494828ab1c1fe7c23608f9eb398342
 ```
 
 仓库根目录的 `dsh/index.html`、`codex/index.html` 为这些相同成品的展示副本，保留原有观看地址。
