@@ -23,6 +23,7 @@
 <p><a href="https://github.com/baihejiangnan/rainy-store-duo/tree/main/projects/dsh/">查看 DSH 完整项目</a> · <a href="https://github.com/baihejiangnan/rainy-store-duo/tree/main/projects/codex/">查看 Codex 完整项目</a> · <a href="https://github.com/baihejiangnan/rainy-store-duo/archive/refs/heads/main.zip">下载整个仓库 ZIP</a></p>
 <p>归档时使用 Node.js v24.19.0，在独立目录分别执行 <code>npm ci</code>，再运行各自的构建命令。DSH 使用 <code>node build.mjs --minify</code>，Codex 使用 <code>npm run build</code>。两份重新构建的 HTML 均与对应原始成品的 SHA-256 一致。具体步骤见各项目内的复现说明。</p>
 <h2 id="observations">首轮成品感受</h2>
+<p>以下比较仅对应首轮两份成品，不适用于 DSH 第二次独立测试。</p>
 <p>只看这次作品，我更喜欢 DeepSeek 做出来的细节。场景里的小物件、招牌和街角装饰更丰富，整体更耐看。</p>
 <p>两份作品的色彩方向也不同。DeepSeek 的饱和度更高，冷暖对比更强；GPT 的颜色更收敛，整体饱和度较低。这部分属于设计取向，我不据此评高低。</p>
 <p>让我觉得 GPT 处理得更好的，是换视角之后的降雨表现。</p>
@@ -30,15 +31,15 @@
 <p>核对源码后，这个差异也有了具体解释。DeepSeek 使用始终朝向相机的雨丝面片，雨丝长轴跟随屏幕方向，因此俯视时仍保留明显的线状外观。GPT 使用三维空间中的线段表示雨丝，投影长度会随观察角度变化。</p>
 <p>就这两份作品而言，我更喜欢 DeepSeek 的细节丰富度和观赏性，GPT 的降雨在换视角时表现得更合理。这些都是针对本次成品的个人感受。</p>
 <h2 id="dsh-second">DSH 第二次独立测试</h2>
-<p>我对 DSH 的实际结果仍不满意，与我看到的网上评价有落差，于是新开了一个工作区，重新做了一次独立测试，没有干扰原有项目。这次耗时约 1 小时 30 分钟。第二次成品单独展示，保留第一次结果，方便一起查看。</p>
+<p>我对 DSH 第一次的实际结果不满意，与我看到的网上评价有落差，于是新开了一个工作区，重新做了一次独立测试，没有干扰原有项目。这次耗时约 1 小时 30 分钟。第二次成品与第一次、Codex 的成品一起展示，方便直接比较。</p>
 <p>第二次使用的客户端、内核版本、模型和 High 档位均与第一次相同，即官方 DSH 客户端、DSH 0.2.1-rc2、DeepSeek-V4.1-Flash 1017、High。</p>
 <p><a href="https://baihejiangnan.github.io/rainy-store-duo/dsh-2/">打开 DSH 第二次测试</a> · <a href="https://github.com/baihejiangnan/rainy-store-duo/tree/main/projects/dsh-2/">查看第二次完整项目</a></p>
 <figure><a href="../assets/dsh-2.jpg" target="_blank" rel="noopener"><img src="../assets/dsh-2.jpg" alt="DSH 第二次测试的原始成品" loading="lazy"></a></figure>
 <p>DSH 第二次独立测试。截图来自原始单文件成品，场景未作修改。</p>
-<p>第二次测试中，DeepSeek 依然与第一次一样，雨丝始终朝向相机，雨丝长轴跟随屏幕方向。因此，俯视时仍保留明显的线形外观，没有随视角变化呈现真实雨滴运动轨迹应有的投影缩短。</p>
-<p>核对第二次源码后，可以看到它使用带雨丝图案的点精灵（<code>PointsMaterial</code>）。第一次使用面向相机的面片，两次具体实现不同，但雨丝图案均保持屏幕朝向，因而出现了相同的俯视问题。</p>
-<figure><a href="../assets/dsh-2-top.jpg" target="_blank" rel="noopener"><img src="../assets/dsh-2-top.jpg" alt="DSH 第二次测试的俯视雨丝表现" loading="lazy"></a></figure>
-<p>将原始成品旋转到较高俯视角后，雨丝仍然保持明显的线形外观。</p>
+<aside class="test-note" role="note"><p><strong>复看更正</strong> 此前我认为第二次也出现了与第一次相同的雨效问题，是我看错了。重新查看后，第二次并没有出现此前所说的雨效问题，整体表现也明显好于第一次。这里撤回原来的判断，并更新记录。</p></aside>
+<p>同样的客户端、模型和 High 档位，两次独立测试的结果却有明显差异。这也提醒我，单次结果存在随机性，不能用第一次的表现概括后续结果。</p>
+<figure><a href="../assets/dsh-2-top.jpg" target="_blank" rel="noopener"><img src="../assets/dsh-2-top.jpg" alt="DSH 第二次测试的高角度场景截图" loading="lazy"></a></figure>
+<p>第二次原始成品的高角度截图，仅供查看场景。</p>
 <h2 id="delivery-choice">交付方式与耗时的看法</h2>
 <p>两次 DSH 都给出了模块化的完整项目。这种交付方式可能是耗时较长的原因之一，但我没有单独测量工程组织、建模和调试各自花了多久，不能把全部耗时归到模块化上。</p>
 <p>两边的提示词都没有约束必须采用什么工程结构，也没有要求只制作单个 HTML。两次 DSH 选择生成模块化完整项目，都是它自己决定的。Codex 也生成了可重新构建的工程，并交付了单文件成品。</p>
